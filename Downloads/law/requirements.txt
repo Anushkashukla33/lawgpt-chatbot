@@ -1,0 +1,15 @@
+langchain==0.1.17
+langchain-core==0.1.52
+langchain-community==0.0.38
+langchain-huggingface==0.0.3
+pdfplumber
+pdf2image
+pytesseract
+Pillow
+transformers
+torch
+faiss-cpu
+sentence-transformers
+tqdm
+langchain-together
+
