@@ -5,10 +5,12 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from .schemas import ChatRequest, ChatResponse, Source
+from .schemas import RagIngestRequest, RagAskRequest
 from .memory import memory_store
 from .llm import generate_llm_reply
 from .knowledge import wikipedia_search
 from .utils import apply_tone_prefix, generate_suggestions
+from .rag import get_rag
 
 
 app = FastAPI(title="Chat Assistant")
@@ -161,6 +163,30 @@ def chat(req: ChatRequest) -> ChatResponse:
 	suggestions = generate_suggestions(answer)
 	mem_sum = memory_store.summarize(session_id)
 	return ChatResponse(session_id=session_id, response=answer, suggestions=suggestions, sources=sources, memory_summary=mem_sum)
+
+
+@app.post("/rag/ingest")
+def rag_ingest(body: RagIngestRequest):
+	try:
+		rag = get_rag()
+	except RuntimeError as e:
+		raise HTTPException(status_code=400, detail=str(e))
+	count = rag.ingest_pdfs(body.folder)
+	return {"ingested_chunks": count}
+
+
+@app.post("/rag/ask")
+def rag_ask(body: RagAskRequest):
+	try:
+		rag = get_rag()
+	except RuntimeError as e:
+		raise HTTPException(status_code=400, detail=str(e))
+	answer, retrieved = rag.answer(body.question, top_k=body.top_k)
+	sources = [
+		{"text": t, "metadata": m, "score": s}
+		for (t, m, s) in retrieved
+	]
+	return {"answer": answer, "sources": sources}
 
 
 @app.get("/memory/{session_id}")

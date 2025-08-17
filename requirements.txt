@@ -4,3 +4,8 @@ requests==2.32.3
 pydantic==2.10.6
 openai==1.40.2
 python-dotenv==1.0.1
+langchain>=0.2.11
+langchain-community>=0.2.11
+langchain-together>=0.1.0
+numpy>=2.1.0
+pypdf>=4.3.1

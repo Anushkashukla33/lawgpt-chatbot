@@ -28,3 +28,12 @@ class ChatResponse(BaseModel):
     suggestions: List[str] = []
     sources: List[Source] = []
     memory_summary: Optional[str] = None
+
+
+class RagIngestRequest(BaseModel):
+	folder: str = Field(..., description="Absolute or workspace path to a folder containing PDFs")
+
+
+class RagAskRequest(BaseModel):
+	question: str = Field(..., min_length=3)
+	top_k: int = Field(5, ge=1, le=20)
