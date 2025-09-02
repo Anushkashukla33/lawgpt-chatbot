@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Constitution of India - AI Chatbot</title>
+    <title>Enhanced Legal AI Assistant - India</title>
     <style>
         * {
             margin: 0;
@@ -13,24 +13,32 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #2c1810 0%, #1a0f08 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            color: #fff;
+            color: #333;
         }
 
         .header {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
             display: flex;
             align-items: center;
             gap: 15px;
-            border-bottom: 1px solid rgba(218, 165, 32, 0.3);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
         .header-logo {
-            width: 40px;
-            height: 40px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23DAA520"/><text x="50" y="60" text-anchor="middle" fill="white" font-size="40">🏛️</text></svg>') center/cover;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
         }
 
         .header-text {
@@ -38,56 +46,98 @@
         }
 
         .header-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #DAA520;
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 4px;
         }
 
         .header-subtitle {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .user-stats {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 20px;
             font-size: 12px;
-            color: #ccc;
-            margin-top: 2px;
+            color: #666;
         }
 
         .main-container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            height: calc(100vh - 80px);
+            height: calc(100vh - 100px);
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
-        }
-
-        .constitution-logo {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(45deg, #DAA520, #B8860B);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .constitution-symbol {
-            font-size: 80px;
-            margin-bottom: 20px;
-            display: block;
-            filter: drop-shadow(0 4px 8px rgba(218, 165, 32, 0.3));
+            gap: 20px;
         }
 
         .chat-container {
             flex: 1;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
-            padding: 0 20px;
             overflow: hidden;
         }
 
+        .welcome-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .welcome-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .welcome-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+
+        .features-list li:before {
+            content: "✨ ";
+            margin-right: 8px;
+        }
+
         .suggestions-section {
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
 
         .suggestions-title {
-            color: #DAA520;
-            font-size: 16px;
+            color: #333;
+            font-size: 18px;
             font-weight: 600;
             margin-bottom: 15px;
             text-align: center;
@@ -96,8 +146,578 @@
         .suggestions-grid {
             display: grid;
             gap: 10px;
-            margin-bottom: 20px;
         }
+
+        .suggestion-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: left;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .suggestion-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .message.user .message-avatar {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .message.bot .message-avatar {
+            background: linear-gradient(45deg, #764ba2, #667eea);
+            color: white;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 15px 20px;
+            border-radius: 18px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.bot .message-content {
+            background: #f8f9fa;
+            color: #333;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-time {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .suggested-questions {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .suggested-question {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .suggested-question:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+            resize: none;
+            min-height: 50px;
+            max-height: 120px;
+        }
+
+        .chat-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .send-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 15px 20px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .typing-indicator.show {
+            display: block;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .control-btn {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            padding: 8px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(102, 126, 234, 0.2);
+        }
+
+        .tone-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #666;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading {
+            animation: pulse 1.5s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                height: auto;
+                min-height: calc(100vh - 100px);
+            }
+            
+            .sidebar {
+                width: 100%;
+                order: 2;
+            }
+            
+            .chat-container {
+                order: 1;
+                min-height: 60vh;
+            }
+            
+            .message-content {
+                max-width: 85%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-logo">⚖️</div>
+        <div class="header-text">
+            <div class="header-title">Enhanced Legal AI Assistant</div>
+            <div class="header-subtitle">Your intelligent companion for Indian legal knowledge</div>
+        </div>
+        <div class="user-stats" id="userStats">
+            Conversations: <span id="conversationCount">0</span>
+        </div>
+    </div>
+
+    <div class="tone-indicator" id="toneIndicator">
+        Tone: <span id="currentTone">Professional</span>
+    </div>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="welcome-section">
+                <div class="welcome-title">Welcome! 👋</div>
+                <div class="welcome-subtitle">Your AI Legal Assistant</div>
+                <ul class="features-list">
+                    <li>Conversation Memory</li>
+                    <li>Tone Adaptation</li>
+                    <li>Personalized Responses</li>
+                    <li>Legal Facts of India</li>
+                    <li>Smart Suggestions</li>
+                </ul>
+            </div>
+
+            <div class="suggestions-section">
+                <div class="suggestions-title">Quick Questions</div>
+                <div class="suggestions-grid" id="suggestionsGrid">
+                    {% for question in suggested_questions %}
+                    <button class="suggestion-btn" onclick="sendMessage('{{ question }}')">
+                        {{ question }}
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will be added here dynamically -->
+            </div>
+            
+            <div class="typing-indicator" id="typingIndicator">
+                AI is thinking... 🤔
+            </div>
+
+            <div class="chat-input-container">
+                <div class="chat-input-wrapper">
+                    <textarea 
+                        class="chat-input" 
+                        id="messageInput" 
+                        placeholder="Ask me anything about Indian law and constitution..."
+                        rows="1"
+                        onkeydown="handleKeyDown(event)"
+                    ></textarea>
+                    <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+                        Send
+                    </button>
+                </div>
+                
+                <div class="controls">
+                    <button class="control-btn" onclick="resetConversation()">Reset Chat</button>
+                    <button class="control-btn" onclick="loadHistory()">Load History</button>
+                    <button class="control-btn" onclick="updateSuggestions()">New Suggestions</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let conversationHistory = [];
+        let currentTone = 'professional';
+
+        // Initialize the chat
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserStats();
+            addWelcomeMessage();
+            updateSuggestions();
+        });
+
+        function addWelcomeMessage() {
+            const welcomeMessage = {
+                type: 'bot',
+                content: "Hello! I'm your enhanced legal AI assistant. I can help you with Indian law, constitution, and legal procedures. I remember our conversations and adapt my tone to match yours. How can I assist you today?",
+                timestamp: new Date().toISOString(),
+                suggested_questions: [
+                    "What are the fundamental rights in the Indian Constitution?",
+                    "Tell me about the Supreme Court",
+                    "What is a PIL?"
+                ]
+            };
+            addMessage(welcomeMessage);
+        }
+
+        function sendMessage(message = null) {
+            const input = document.getElementById('messageInput');
+            const messageText = message || input.value.trim();
+            
+            if (!messageText) return;
+
+            // Add user message
+            const userMessage = {
+                type: 'user',
+                content: messageText,
+                timestamp: new Date().toISOString()
+            };
+            addMessage(userMessage);
+
+            // Clear input
+            if (!message) {
+                input.value = '';
+                input.style.height = 'auto';
+            }
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            // Send to server
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: messageText })
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideTypingIndicator();
+                
+                if (data.error) {
+                    addMessage({
+                        type: 'bot',
+                        content: `Error: ${data.error}`,
+                        timestamp: new Date().toISOString()
+                    });
+                } else {
+                    // Update tone indicator
+                    currentTone = data.tone || 'professional';
+                    updateToneIndicator();
+                    
+                    // Add bot response
+                    const botMessage = {
+                        type: 'bot',
+                        content: data.bot_response,
+                        timestamp: data.timestamp,
+                        suggested_questions: data.suggested_questions || []
+                    };
+                    addMessage(botMessage);
+                    
+                    // Update user stats
+                    if (data.user_profile) {
+                        updateUserStats(data.user_profile);
+                    }
+                }
+            })
+            .catch(error => {
+                hideTypingIndicator();
+                addMessage({
+                    type: 'bot',
+                    content: `Sorry, I encountered an error: ${error.message}`,
+                    timestamp: new Date().toISOString()
+                });
+            });
+        }
+
+        function addMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${message.type}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = message.type === 'user' ? '👤' : '🤖';
+            
+            const content = document.createElement('div');
+            content.className = 'message-content';
+            content.textContent = message.content;
+            
+            const time = document.createElement('div');
+            time.className = 'message-time';
+            time.textContent = new Date(message.timestamp).toLocaleTimeString();
+            
+            content.appendChild(time);
+            
+            // Add suggested questions for bot messages
+            if (message.suggested_questions && message.suggested_questions.length > 0) {
+                const suggestionsDiv = document.createElement('div');
+                suggestionsDiv.className = 'suggested-questions';
+                
+                message.suggested_questions.forEach(question => {
+                    const suggestionBtn = document.createElement('button');
+                    suggestionBtn.className = 'suggested-question';
+                    suggestionBtn.textContent = question;
+                    suggestionBtn.onclick = () => sendMessage(question);
+                    suggestionsDiv.appendChild(suggestionBtn);
+                });
+                
+                content.appendChild(suggestionsDiv);
+            }
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(content);
+            chatMessages.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Store in history
+            conversationHistory.push(message);
+        }
+
+        function showTypingIndicator() {
+            document.getElementById('typingIndicator').classList.add('show');
+        }
+
+        function hideTypingIndicator() {
+            document.getElementById('typingIndicator').classList.remove('show');
+        }
+
+        function updateToneIndicator() {
+            const toneSpan = document.getElementById('currentTone');
+            toneSpan.textContent = currentTone.charAt(0).toUpperCase() + currentTone.slice(1);
+        }
+
+        function loadUserStats() {
+            fetch('/user-stats')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.error) {
+                        updateUserStats(data);
+                    }
+                })
+                .catch(error => console.error('Error loading user stats:', error));
+        }
+
+        function updateUserStats(stats) {
+            const conversationCount = document.getElementById('conversationCount');
+            if (stats.total_conversations !== undefined) {
+                conversationCount.textContent = stats.total_conversations;
+            }
+        }
+
+        function resetConversation() {
+            fetch('/reset', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('chatMessages').innerHTML = '';
+                    conversationHistory = [];
+                    addWelcomeMessage();
+                    loadUserStats();
+                })
+                .catch(error => console.error('Error resetting conversation:', error));
+        }
+
+        function loadHistory() {
+            fetch('/history')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.error && data.history) {
+                        document.getElementById('chatMessages').innerHTML = '';
+                        conversationHistory = [];
+                        
+                        data.history.forEach(msg => {
+                            const message = {
+                                type: 'user',
+                                content: msg.user_message,
+                                timestamp: msg.timestamp
+                            };
+                            addMessage(message);
+                            
+                            const botMessage = {
+                                type: 'bot',
+                                content: msg.bot_response,
+                                timestamp: msg.timestamp,
+                                suggested_questions: msg.suggested_questions
+                            };
+                            addMessage(botMessage);
+                        });
+                    }
+                })
+                .catch(error => console.error('Error loading history:', error));
+        }
+
+        function updateSuggestions() {
+            fetch('/suggestions')
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.error && data.suggestions) {
+                        const suggestionsGrid = document.getElementById('suggestionsGrid');
+                        suggestionsGrid.innerHTML = '';
+                        
+                        data.suggestions.forEach(question => {
+                            const btn = document.createElement('button');
+                            btn.className = 'suggestion-btn';
+                            btn.textContent = question;
+                            btn.onclick = () => sendMessage(question);
+                            suggestionsGrid.appendChild(btn);
+                        });
+                    }
+                })
+                .catch(error => console.error('Error updating suggestions:', error));
+        }
+
+        function handleKeyDown(event) {
+            const input = event.target;
+            
+            // Auto-resize textarea
+            input.style.height = 'auto';
+            input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+            
+            // Send on Enter (but not Shift+Enter)
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        // Auto-focus input
+        document.getElementById('messageInput').focus();
+    </script>
+</body>
+</html>
 
         .suggestion-btn {
             background: rgba(218, 165, 32, 0.1);
